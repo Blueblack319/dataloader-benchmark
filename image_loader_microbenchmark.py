@@ -73,8 +73,7 @@ def iterate(dataset, label, batch_size, metrics, output_file=None):
     with open(output_file, "a+") as f:
         for label, tput in metrics.items():
             f.write(f"{label},{tput}\n")
-        f.write("imagenet2=================================\n")
-
+        f.write("baseline_1=================================\n")
 
 def build_torch_dataset(
     root_dir, batch_size, shuffle=False, num_workers=None, transform=None
@@ -447,8 +446,6 @@ def crop_and_flip_image(row):
     # Make sure to use torch.tensor here to avoid a copy from numpy.
     row["image"] = base_transform(row["image"])
     return row
-
-
 ##############################################################################################
 
 if __name__ == "__main__":
@@ -573,7 +570,7 @@ if __name__ == "__main__":
         #    args.data_root,
         #    args.batch_size,
         #    num_workers=args.torch_num_workers,
-        #    transform=get_transform(True),
+        #    transform=base_transform,
         #)
         #for i in range(args.num_epochs):
         #    iterate(
